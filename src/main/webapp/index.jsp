@@ -36,9 +36,9 @@
 					<tr>
 						<td><c:out value="${user.name }"></c:out></td>
 						<td><c:out value="${user.email }"></c:out></td>
-						<td><a href="delete-user?id=${user.id}"}><button
+						<td><a href="delete-user?id=${user.id}"><button
 									class="btn btn-outline-danger" type="button">Delete</button></a></td>
-						<td><a href="update-user?id=${user.id}"}><button
+						<td><a href="update-user?id=${user.id}"><button
 									class="btn btn-outline-primary" type="button">Update</button></a></td>
 					</tr>
 				</c:forEach>

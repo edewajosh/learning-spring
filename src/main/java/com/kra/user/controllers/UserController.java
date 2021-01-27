@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -106,7 +108,6 @@ public class UserController {
 	@RequestMapping("/users")
 	public ModelAndView getAllUsers(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		List<User> users = userDao.getAll();
-		System.out.println(users);
 		mv.setViewName("index.jsp");
 		mv.addObject("users", users);
 		return mv;
@@ -120,13 +121,12 @@ public class UserController {
 	
 	@RequestMapping("/update-user")
 	public ModelAndView updateUserForm(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		String email = request.getParameter("email");
-		String name = request.getParameter("name");
+		boolean status = false;
+		User user = null;
 		int id = Integer.parseInt(request.getParameter("id"));
-		mv.addObject("name", name);
-		mv.addObject("email", email);
-		mv.addObject("id", id);
+		user = userDao.getById(id);
 		mv.setViewName("update.jsp");
+		mv.addObject("user", user);
 		return mv;
 	}
 }
