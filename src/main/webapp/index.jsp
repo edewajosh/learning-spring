@@ -8,17 +8,21 @@
 <body>
 	<div class="container mt-3">
 		<div class="row">
-			<div class="col-md-4">
-				<a href="create-user"><button type="button" class="btn btn-primary">Create
-						User</button></a>
+			<div class="col-md-3">
+				<a href="create-user"><button type="button"
+						class="btn btn-primary">Create User</button></a>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<a href="users"><button type="button" class="btn btn-info">View
 						Users</button></a>
 			</div>
-			<div class="col-md-4">
-				<a href="delete-users"><button type="button" class="btn btn-danger">Delete
-						Users</button></a>
+			<div class="col-md-3">
+				<a href="delete-users"><button type="button"
+						class="btn btn-danger">Delete Users</button></a>
+			</div>
+			<div class="col-md-3">
+				<a href="post-article"><button type="button"
+						class="btn btn-success">Post Article</button></a>
 			</div>
 		</div>
 	</div>
