@@ -1,6 +1,7 @@
 package com.kra.article.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.kra.user.model.User;
 
@@ -9,9 +10,9 @@ public class Article {
 	private String title;
 	private String body;
 	private String createdOn;
-	private User user;
+	private List<User> user;
 	
-	public Article(String title, String body, String createdOn, User user) {
+	public Article(String title, String body, String createdOn, List<User> user) {
 		this.title = title;
 		this.body = body;
 		this.createdOn = createdOn;
@@ -50,11 +51,11 @@ public class Article {
 		this.createdOn = createdOn;
 	}
 
-	public User getUser() {
+	public List<User> getUsers() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUsers(List<User> user) {
 		this.user = user;
 	}
 	

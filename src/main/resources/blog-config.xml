@@ -14,7 +14,7 @@
 				<property name="url"
 					value="jdbc:mysql://localhost:3306/TechBlog" />
 				<property name="username" value="root" />
-				<property name="password" value="yourpassword" />
+				<property name="password" value="yourPassword" />
 			</dataSource>
 		</environment>
 	</environments>
