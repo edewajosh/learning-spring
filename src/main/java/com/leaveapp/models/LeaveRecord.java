@@ -8,26 +8,26 @@ package com.leaveapp.models;
 public class LeaveRecord {
 	private Integer id;
 	private Integer daysCarriedForward;
-	private final Integer currentYearLeaveDays = 20;
+	private Integer currentYearLeaveDays;
 	private Integer totalLeaveDays;
 	private Integer remainingLeaveDays;
-	private Employee employee;
+	private Integer employeeId;
 	
-	private ActiveLeave activeLeave;
-	
-	public LeaveRecord(Integer id, Integer daysCarriedForward, Integer totalLeaveDays, Employee employee) {
+	public LeaveRecord(Integer id, Integer daysCarriedForward, Integer totalLeaveDays,Integer currentYearLeaveDays , Integer remainingLeaveDays, Integer employeeId) {
 		this.id = id;
 		this.daysCarriedForward = daysCarriedForward;
 		this.totalLeaveDays = totalLeaveDays;
-		this.employee = employee;
-		this.getCurrentYearLeaveDays();
+		this.employeeId = employeeId;
+		this.currentYearLeaveDays = currentYearLeaveDays;
+		this.remainingLeaveDays = remainingLeaveDays;
 	}
 
-	public LeaveRecord(Integer daysCarriedForward,  Integer totalLeaveDays, Employee employee) {
+	public LeaveRecord(Integer daysCarriedForward,  Integer totalLeaveDays,Integer currentYearLeaveDays, Integer remainingLeaveDays, Integer employeeId) {
 		this.daysCarriedForward = daysCarriedForward;
 		this.totalLeaveDays = totalLeaveDays;
-		this.employee = employee;
-		this.getCurrentYearLeaveDays();
+		this.employeeId = employeeId;
+		this.currentYearLeaveDays = currentYearLeaveDays;
+		this.remainingLeaveDays = remainingLeaveDays;
 	}
 
 	public Integer getId() {
@@ -49,6 +49,9 @@ public class LeaveRecord {
 	public Integer getCurrentYearLeaveDays() {
 		return currentYearLeaveDays;
 	}
+	public void setCurrentYearLeaveDays(Integer currentYearLeaveDays) {
+		this.currentYearLeaveDays = currentYearLeaveDays;
+	}
 
 	public Integer getTotalLeaveDays() {
 		return totalLeaveDays;
@@ -58,19 +61,19 @@ public class LeaveRecord {
 		this.totalLeaveDays = totalLeaveDays;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public Integer getEmployee() {
+		return employeeId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployee(Integer employeeId) {
+		this.employeeId = employeeId;
 	}
 	
 	public Integer getRemainingLeaveDays() {
 		return remainingLeaveDays;
 	}
 	
-	public void setRemainingLeaveDays() {
-		this.remainingLeaveDays = totalLeaveDays - activeLeave.getNumberOfDaysApplied();
+	public void setRemainingLeaveDays(int remainingLeaveDays) {
+		this.remainingLeaveDays = remainingLeaveDays;
 	}
 }

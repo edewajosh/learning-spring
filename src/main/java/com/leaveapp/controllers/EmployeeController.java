@@ -50,10 +50,4 @@ public class EmployeeController {
 		}
 		return "redirect:/admin";
 	}
-	
-	@RequestMapping("/add-leave-record")
-	public String addLeaveRecord() {
-		modelAndView.setViewName("dashboard.jsp");
-		return "redirect:/admin";
-	}
 }

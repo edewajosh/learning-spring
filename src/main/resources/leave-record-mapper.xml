@@ -1,3 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="LeaveRecord"></mapper>
+<mapper namespace="LeaveRecord">
+	<resultMap type="LeaveRecord" id="leaveRecordResultMap">
+		<id property="id" column="id" />
+		<result property="daysCarriedForward"
+			column="days_carried_forward" />
+		<result property="currentYearLeaveDays"
+			column="current_year_leave_days" />
+		<result property="totalLeaveDays" column="total_leave_days" />
+		<result property="remainingLeaveDays"
+			column="remaining_leave_days" />
+		<result property="employeeId" column="staff_id" />
+	</resultMap>
+
+	<insert id="createLeaveRecord" parameterType="LeaveRecord"
+		keyProperty="id">
+		INSERT INTO LeaveRecord(days_carried_forward,
+		current_year_leave_days,
+		total_leave_days,remaining_leave_days,
+		staff_id)
+		VALUES(#{daysCarriedForward}, #{currentYearLeaveDays},
+		#{totalLeaveDays}, #{remainingLeaveDays}, #{employeeId});
+	</insert>
+	<select id="getAllLeaveRecords" parameterType="int" resultMap="leaveRecordResultMap">
+		SELECT * FROM LeaveRecord;
+	</select>
+</mapper>

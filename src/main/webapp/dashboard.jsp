@@ -56,7 +56,7 @@
 						<div class="form-group">
 							<label>Staff ID:</label> <select class="form-control" name="employee_id">
 								<c:forEach items="${employees}" var="employee">
-									<option value="${employee.staffIdNo}">${employee.fullNames}</option>
+									<option value="${employee.id}">${employee.fullNames}</option>
 								</c:forEach>
 							</select>
 						</div>
