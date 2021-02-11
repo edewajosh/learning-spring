@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Employee">
+	<resultMap type="Employee" id="employeeResult">
+		<id property="id" column="id" />
+		<result property="fullNames" column="full_name" />
+		<result property="staffIdNo" column="staff_id" />
+		<result property="phoneNumber" column="phone_number" />
+	</resultMap>
+
+	<insert id="createEmployee" parameterType="int">
+		INSERT INTO
+		employee(full_name, staff_id, phone_number) VALUES(#{fullNames},
+		#{staffIdNo}, #{phoneNumber});
+	</insert>
+	<select id="getAllEMployees" parameterType="employeeResult">
+		SELECT * FROM
+		employee;
+	</select>
+	<select id="getEmployeeById" parameterType="employeeResult">
+		SELECT * FROM
+		employee WHERE id=#{id};
+	</select>
+	<update id="updateEmployee" parameterType="int">
+		UPDATE employee SET(full_name=#{fullNames}, staff_id=#{staffIdNo},
+		phone_number=#{phoneNumber});
+	</update>
+	<delete id="deleteByAddressId" parameterType="int">
+		DELETE FROM
+		employee WHERE id=#{id};
+	</delete>
+	<delete id="deleteAllArticle">
+		DELETE FROM employee;
+	</delete>
+</mapper>
