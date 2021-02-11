@@ -30,18 +30,20 @@
 			<div class="row">
 				<div class="col-6">
 					<p class="h4">Add Employee</p>
-					<form actio="add-employee">
+					<form action="add-employee">
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Staff ID:</label> <input
-								type="text" class="form-control" value="${staffId }" disabled>
+							<label>Staff ID:</label>
+							<p class="h5">${staffId }</p>
+							<input type="text" class="form-control" name="staff_id"
+								value="${staffId }" hidden>
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Full Names:</label> <input
-								type="text" class="form-control" id="exampleFormControlInput1">
+							<label>Full Names:</label> <input type="text"
+								class="form-control" name="full_name">
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Phone Number:</label> <input
-								type="text" class="form-control" id="exampleFormControlInput1">
+							<label>Phone Number:</label> <input type="text"
+								class="form-control" name="phone_number">
 						</div>
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-lg btn-primary">Submit</button>
@@ -52,27 +54,31 @@
 					<p class="h4">Create Leave Record</p>
 					<form action="add-leave-record">
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Staff ID:</label> <input
-								type="text" class="form-control" value="${staffId }" disabled>
+							<label>Staff ID:</label> <select class="form-control" name="employee_id">
+								<c:forEach items="${employees}" var="employee">
+									<option value="${employee.staffIdNo}">${employee.fullNames}</option>
+								</c:forEach>
+							</select>
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Leave Days
+							<label >Leave Days
 								Currently:</label> <input type="number" class="form-control" min="0"
 								max="24" value="leaveDays">
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Leave Days Carried
+							<label >Leave Days Carried
 								Forward:</label> <input type="number" class="form-control"
 								value="carriedForward" disabled>
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Leave Days
+							<label >Leave Days
 								Remaining:</label> <input type="number" class="form-control"
 								value="carriedForward" disabled>
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Total Leave Days: </label> <input type="number" class="form-control"
-								value="carriedForward" disabled>
+							<label >Total Leave Days: </label>
+							<input type="number" class="form-control" value="carriedForward"
+								disabled>
 						</div>
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-lg btn-primary">Submit</button>

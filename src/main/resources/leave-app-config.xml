@@ -3,9 +3,9 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="LeaveRecord" type="com.leaveapp.models.LeaveRecord" />
 		<typeAlias alias="Employee" type="com.leaveapp.models.Employee"/>
 		<typeAlias alias="Supervisor" type="com.leaveapp.models.Supervisor"/>
+		<typeAlias alias="LeaveRecord" type="com.leaveapp.models.LeaveRecord" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

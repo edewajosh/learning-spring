@@ -3,10 +3,12 @@ package com.leaveapp.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Component;
 
 import com.leaveapp.models.Employee;
 import com.leaveapp.utils.LeaveUtils;
 
+@Component
 public class EmployeeImplDao implements IEmployee {
 
 	public boolean createEmployee(Employee employee) {
@@ -31,7 +33,7 @@ public class EmployeeImplDao implements IEmployee {
 		List<Employee> employees = null;
 		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
 		try {
-			employees = session.selectList("Employee.createEmployee");
+			employees = session.selectList("Employee.getAllEmployees");
 			session.commit();
 			session.close();
 		} catch (Exception e) {

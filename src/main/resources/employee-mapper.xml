@@ -9,16 +9,16 @@
 		<result property="phoneNumber" column="phone_number" />
 	</resultMap>
 
-	<insert id="createEmployee" parameterType="int">
+	<insert id="createEmployee" parameterType="Employee" keyProperty="id">
 		INSERT INTO
 		employee(full_name, staff_id, phone_number) VALUES(#{fullNames},
 		#{staffIdNo}, #{phoneNumber});
 	</insert>
-	<select id="getAllEMployees" parameterType="employeeResult">
+	<select id="getAllEmployees" parameterType="int" resultMap="employeeResult">
 		SELECT * FROM
 		employee;
 	</select>
-	<select id="getEmployeeById" parameterType="employeeResult">
+	<select id="getEmployeeById" parameterType="int" resultMap="employeeResult">
 		SELECT * FROM
 		employee WHERE id=#{id};
 	</select>

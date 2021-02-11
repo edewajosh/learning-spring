@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class LeaveUtils {
+	
 private static SqlSessionFactory factory;
 	
 	private LeaveUtils() {}
