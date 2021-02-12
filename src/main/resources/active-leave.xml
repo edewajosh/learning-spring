@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ActiveLeave">
+	<resultMap type="ActiveLeave" id="activeLeaveResultMap">
+		<constructor>
+			<idArg column="leave_id" javaType="int" />
+		</constructor>
+		<result property="employeeId" column="employee_id" />
+		<result property="applied_on" column="applied_on" />
+		<result property="started_on" column="started_on" />
+		<result property="ending_on" column="ended_on" />
+		<result property="numberOfDaysApplied" column="days_applied" />
+		<result property="typeOfLeave" column="type_of_leave" />
+		<result property="comment" column="comment" />
+		<result property="leaveAddress" column="leave_address" />
+		<result property="isApproved" column="is_approved" />
+		<result property="approvedById" column="supervisor_id" />
+		<association property="approvedBy" javaType="Supervisor">
+			<id property="id" column="id" />
+			<result property="fullNames" column="full_name" />
+			<result property="staffIdNo" column="staff_id" />
+			<result property="phoneNumber" column="phone_number" />
+			<result property="email" column="email" />
+			<result property="isSupervisor" column="is_supervisor" />
+		</association>
+		<association property="employee" javaType="LeaveRecord">
+			<id property="id" column="id" />
+			<result property="daysCarriedForward"
+				column="days_carried_forward" />
+			<result property="currentYearLeaveDays"
+				column="current_year_leave_days" />
+			<result property="totalLeaveDays" column="total_leave_days" />
+			<result property="remainingLeaveDays"
+				column="remaining_leave_days" />
+			<result property="employeeId" column="staff_id" />
+		</association>
+	</resultMap>
+
+	<insert id="createActiveLeave" parameterType="Employee"
+		keyProperty="id">
+		INSERT INTO ActiveLeave (employee_id, applied_on,
+		started_on,
+		ended_on,
+		days_applied, type_of_leave, comment,
+		leave_address,
+		is_approved,
+		supervisor_id) VALUES(#{employeeId},
+		#{applied_on},
+		#{started_on},
+		#{ending_on}, #{numberOfDaysApplied}, #{typeOfLeave},
+		#{comment}, #{leaveAddress},
+		#{isApproved}, #{approvedById})
+	</insert>
+	<select id="getAllActiveLeaves" parameterType="int"
+		resultMap="activeLeaveResultMap">
+		SELECT * FROM ActiveLeave;
+	</select>
+	<select id="getAllActiveLeavesByEmployeeId" parameterType="int"
+		resultMap="activeLeaveResultMap">
+		SELECT * FROM ActiveLeave WHERE employee_id = #{employeeId};
+	</select>
+</mapper>

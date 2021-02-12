@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.leaveapp.models.LeaveRecord;
 
-public interface IRecordLeave {
+public interface ILeaveRecord {
 	public boolean createLeaveRecord(LeaveRecord leaveRecord);
 
 	public LeaveRecord getLeaveRecordById(LeaveRecord LeaveRecord);

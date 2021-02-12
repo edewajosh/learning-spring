@@ -1,4 +1,5 @@
 package com.leaveapp.models;
+
 /*
  * @author: joshedewa@gmail.com
  * @version: 0.1.0
@@ -9,29 +10,44 @@ import java.util.Date;
 
 public class ActiveLeave {
 	private Integer id;
-	private Employee employee;
+	private LeaveRecord employee;
+	private Integer employeeId;
 	private Date applied_on;
 	private Date started_on;
 	private Date ending_on;
 	private Integer numberOfDaysApplied;
-	private Integer typeOfLeave;
+	private String typeOfLeave;
 	private String comment;
 	private Supervisor approvedBy;
+	private Integer approvedById;
 	private boolean isApproved;
 	private String leaveAddress;
-	
-	public ActiveLeave(Employee employee, Date applied_on, Date started_on, Date ending_on, Integer numberOfDaysApplied,
-			Integer typeOfLeave, String comment, Supervisor approvedBy, boolean isApproved, String leaveAddress) {
-		this.employee = employee;
+
+	public ActiveLeave(Date applied_on, Date started_on, Date ending_on, Integer numberOfDaysApplied,
+			String typeOfLeave, String comment, boolean isApproved, String leaveAddress, Integer employeeId,
+			Integer approvedById) {
 		this.applied_on = applied_on;
 		this.started_on = started_on;
 		this.ending_on = ending_on;
 		this.numberOfDaysApplied = numberOfDaysApplied;
 		this.typeOfLeave = typeOfLeave;
 		this.comment = comment;
-		this.approvedBy = approvedBy;
 		this.isApproved = isApproved;
 		this.leaveAddress = leaveAddress;
+		this.employeeId = employeeId;
+		this.approvedById = approvedById;
+	}
+
+	public ActiveLeave(Date applied_on, Date started_on, Date ending_on, Integer numberOfDaysApplied,
+			String typeOfLeave, String leaveAddress, Integer employeeId, Integer approvedById) {
+		this.applied_on = applied_on;
+		this.started_on = started_on;
+		this.ending_on = ending_on;
+		this.numberOfDaysApplied = numberOfDaysApplied;
+		this.typeOfLeave = typeOfLeave;
+		this.leaveAddress = leaveAddress;
+		this.employeeId = employeeId;
+		this.approvedById = approvedById;
 	}
 
 	public Integer getId() {
@@ -42,11 +58,11 @@ public class ActiveLeave {
 		this.id = id;
 	}
 
-	public Employee getEmployee() {
+	public LeaveRecord getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(Employee employee) {
+	public void setEmployee(LeaveRecord employee) {
 		this.employee = employee;
 	}
 
@@ -66,11 +82,11 @@ public class ActiveLeave {
 		this.started_on = started_on;
 	}
 
-	public Date getEnding_on() {
+	public Date getEnded_on() {
 		return ending_on;
 	}
 
-	public void setEnding_on(Date ending_on) {
+	public void setEnded_on(Date ending_on) {
 		this.ending_on = ending_on;
 	}
 
@@ -82,11 +98,11 @@ public class ActiveLeave {
 		this.numberOfDaysApplied = numberOfDaysApplied;
 	}
 
-	public Integer getTypeOfLeave() {
+	public String getTypeOfLeave() {
 		return typeOfLeave;
 	}
 
-	public void setTypeOfLeave(Integer typeOfLeave) {
+	public void setTypeOfLeave(String typeOfLeave) {
 		this.typeOfLeave = typeOfLeave;
 	}
 
@@ -121,6 +137,20 @@ public class ActiveLeave {
 	public void setLeaveAddress(String leaveAddress) {
 		this.leaveAddress = leaveAddress;
 	}
-	
-	
+
+	public Integer getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public Integer getApproveById() {
+		return approvedById;
+	}
+
+	public void setApprovedById(Integer approvedById) {
+		this.approvedById = approvedById;
+	}
 }

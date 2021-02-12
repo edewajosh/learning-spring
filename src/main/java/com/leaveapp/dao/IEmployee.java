@@ -7,7 +7,7 @@ import com.leaveapp.models.Employee;
 public interface IEmployee {
 	
 	public boolean createEmployee(Employee employee);
-	public Employee getEmployeeById(Employee employee);
+	public Employee getEmployeeById(Integer id);
 	public List<Employee> getAllEmployees();
 	public boolean updateEmployee(Employee employee);
 	public boolean deleteEmployeeById(int id);

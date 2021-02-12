@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-info mb-4">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-info mb-4">
 		<a class="navbar-brand" href="index">LeaveApproval</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
@@ -18,19 +18,66 @@
 	</nav>
 	<div class="container">
 		<p class="h4">Apply Leave</p>
-		<form action="add-employee">
+		<form action="leave-request">
 			<div class="form-group">
-				<label>Staff ID:</label>
-				<p class="h5">${staffId }</p>
-				<input type="text" class="form-control" name="staff_id">
+				<input class="form-control" type="number" name="employee_id"
+					value="${employee.id }" hidden>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label>Staff ID:</label> <input type="text" class="form-control"
+						name="staff_id" value="${employee.staffIdNo }" disabled>
+				</div>
+				<div class="form-group col-md-4">
+					<label>Full Names:</label> <input type="text" class="form-control"
+						name="full_name" value="${employee.fullNames }" disabled>
+				</div>
+				<div class="form-group col-md-4">
+					<label>Phone Number:</label> <input type="text"
+						class="form-control" name="phone_number"
+						value="${employee.phoneNumber }" disabled>
+				</div>
 			</div>
 			<div class="form-group">
-				<label>Full Names:</label> <input type="text" class="form-control"
-					name="full_name">
+				<label>Leave Address:</label> <input type="text"
+					class="form-control" name="leave_address">
 			</div>
 			<div class="form-group">
-				<label>Phone Number:</label> <input type="text" class="form-control"
-					name="phone_number">
+				<select class="form-control" name="type_of_leave">
+					<option value="maternity">Maternity</option>
+					<option value="emergency">Emergency</option>
+					<option value="annual">Annual</option>
+					<option>
+				</select>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label>Number of days Applying: </label> <input
+						class="form-control" type="number" min="1" max="24"
+						name="leave_days_applied">
+				</div>
+
+				<div class="form-group col-md-4">
+					<label>Leave Begins on: </label> <input class="form-control"
+						type="date" name="starts_on">
+				</div>
+				<div class="form-group col-md-4">
+					<label>Leave Ends on: </label> <input class="form-control"
+						type="date" name="ends_on">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<select class="form-control" name="supervisor_id">
+						<c:forEach items="${supervisors }" var="supervisor">
+							<option value="${supervisor.id}">${supervisor.fullNames}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="form-groud col-md-6">
+					<input class="form-control" type="number" value="${employee.id }"
+						hidden>
+				</div>
 			</div>
 			<div class="form-group text-center">
 				<button type="submit" class="btn btn-lg btn-primary">Submit</button>

@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Supervisor"></mapper>
+<mapper namespace="Supervisor">
+	<resultMap type="Supervisor" id="supervisorResultMap">
+		<id property="id" column="id" />
+		<result property="fullNames" column="full_name" />
+		<result property="staffIdNo" column="staff_id" />
+		<result property="phoneNumber" column="phone_number" />
+		<result property="email" column="email" />
+		<result property="isSupervisor" column="is_supervisor" />
+	</resultMap>
+
+	<insert id="createSupervisor" parameterType="Supervisor" keyProperty="id">
+		INSERT INTO
+		supervisor(full_name, staff_id, phone_number, email,
+		is_supervisor)
+		VALUES(#{fulNames}, #{staffIdNo}, #{phoneNumber},
+		#{email},
+		#{isSupervisor});
+	</insert>
+
+	<select id="getSupervisorById" parameterType="int">
+		SELECT * FROM supervisor WHERE id=#{id};
+	</select>
+	<select id="getAllSupervisors" resultMap="supervisorResultMap">
+		SELECT * FROM supervisor;
+	</select>
+</mapper>

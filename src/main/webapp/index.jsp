@@ -27,7 +27,7 @@
 			<span>254712345678</span>
 		</div>
 	</div>
-	<nav class="navbar navbar-expand-lg navbar-light bg-info">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-info">
 		<a class="navbar-brand" href="#">LeaveApproval</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"

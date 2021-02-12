@@ -5,18 +5,17 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 
-import com.leaveapp.models.LeaveRecord;
+import com.leaveapp.models.ActiveLeave;
 import com.leaveapp.utils.LeaveUtils;
 
 @Component
-public class LeaveRecordImplDao implements ILeaveRecord {
-	
+public class ActiveLeaveImplDao implements IActiveLeave {
 
-	public boolean createLeaveRecord(LeaveRecord leaveRecord) {
+	public boolean createActiveLeave(ActiveLeave activeLeave) {
 		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
 		boolean status = false;
 		try {
-			session.insert("LeaveRecord.createLeaveRecord", leaveRecord);
+			session.insert("ActiveLeave.createActiveLeave", activeLeave);
 			session.commit();
 			status = true;
 			session.close();
@@ -26,33 +25,32 @@ public class LeaveRecordImplDao implements ILeaveRecord {
 		return status;
 	}
 
-	public LeaveRecord getLeaveRecordById(LeaveRecord LeaveRecord) {
+	public ActiveLeave getActiveLeaveById(Integer id) {
 		return null;
 	}
 
-	public List<LeaveRecord> getAllLeaveRecords() {
+	public List<ActiveLeave> getAllActiveLeaves() {
 		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
-		List<LeaveRecord> leaveRecords = null;
-		
+		List<ActiveLeave> leaves = null;
 		try {
-			leaveRecords = session.selectList("LeaveRecord.getAllLeaveRecords");
+			leaves = session.selectList("ActiveLeave.getAllActiveLeaves");
 			session.commit();
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return leaveRecords;
+		return leaves;
 	}
 
-	public boolean updateLeaveRecord(LeaveRecord LeaveRecord) {
+	public boolean updateActiveLeave(ActiveLeave ActiveLeave) {
 		return false;
 	}
 
-	public boolean deleteLeaveRecordById(int id) {
+	public boolean deleteActiveLeaveById(int id) {
 		return false;
 	}
 
-	public boolean deleteAllLeaveRecords() {
+	public boolean deleteAllActiveLeaves() {
 		return false;
 	}
 

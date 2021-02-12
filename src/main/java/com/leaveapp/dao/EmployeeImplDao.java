@@ -25,8 +25,17 @@ public class EmployeeImplDao implements IEmployee {
 		return status;
 	}
 
-	public Employee getEmployeeById(Employee employee) {
-		return null;
+	public Employee getEmployeeById(Integer id) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		Employee employee = null;
+		try {
+			employee = session.selectOne("Employee.getEmployeeById", id);
+			session.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return employee;
 	}
 
 	public List<Employee> getAllEmployees() {

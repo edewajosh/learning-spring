@@ -8,21 +8,28 @@ package com.leaveapp.models;
 public class Supervisor extends Employee{
 	
 	private boolean isSupervisor;
+	private String email;
 	
-	public Supervisor(Integer id, String fullNames, String staffIdNo, String phoneNumber, boolean isSupervisor) {
+	public Supervisor(Integer id, String fullNames, String staffIdNo, String phoneNumber, String email) {
 		super(id, fullNames, staffIdNo, phoneNumber);
-		this.setSupervisor(isSupervisor);
+		this.isSupervisor = true;
+		this.email = email;
 	}
 	
-	public Supervisor(String fullNames, String staffIdNo, String phoneNumber, boolean isSupervisor) {
+	public Supervisor(String fullNames, String staffIdNo, String phoneNumber, boolean isSupervisor, String email) {
 		super(fullNames, staffIdNo, phoneNumber);
-		this.setSupervisor(isSupervisor);
+		this.isSupervisor = true;
+		this.email = email;
 	}
 	public boolean isSupervisor() {
 		return isSupervisor;
 	}
-
-	public void setSupervisor(boolean isSupervisor) {
-		this.isSupervisor = isSupervisor;
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

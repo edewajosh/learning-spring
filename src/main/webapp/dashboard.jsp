@@ -12,6 +12,21 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+		<a class="navbar-brand" href="#">LeaveApproval</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="leave">Employee</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="login-supervisor">Supervisor</a></li>
+			</ul>
+		</div>
+	</nav>
 	<div class="container mt-1 text-center ">
 		<p class="h4">Admin-Dashboard</p>
 	</div>
