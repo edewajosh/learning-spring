@@ -14,21 +14,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.leaveapp.dao.ActiveLeaveImplDao;
 import com.leaveapp.dao.EmployeeImplDao;
+import com.leaveapp.models.ActiveLeave;
 import com.leaveapp.models.Employee;
 
 @Controller
 public class LeaveController {
 	
 	@Autowired
-	public EmployeeImplDao employeeDao;
+	private EmployeeImplDao employeeDao;
+	
+	@Autowired
+	private ActiveLeaveImplDao activeLeaveDao;
 	
 	ModelAndView modelAndView = new ModelAndView();
 	
 	@RequestMapping("/index")
 	public ModelAndView index() {
 		modelAndView.setViewName("index.jsp");
-		System.out.println("Hello Leave Approval");
 		return modelAndView;
 	}
 	
@@ -44,10 +48,12 @@ public class LeaveController {
 	@RequestMapping("/admin")
 	public ModelAndView adminDashboard() {
 		List<Employee> employees = employeeDao.getAllEmployees();
+		List<ActiveLeave>leaves = activeLeaveDao.getAllActiveLeaves();
 		modelAndView.setViewName("dashboard.jsp");
 		UUID uuid=UUID.randomUUID();
 		modelAndView.addObject("staffId", uuid);
 		modelAndView.addObject("employees", employees);
+		modelAndView.addObject("leaves", leaves);
 		return modelAndView;
 	}
 	

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ActiveLeave">
-	<resultMap type="ActiveLeave" id="activeLeaveResultMap">
-		<constructor>
-			<idArg column="leave_id" javaType="int" />
-		</constructor>
+
+	<resultMap type="ActiveLeave" id="leaveResultMap">
+		<!--<constructor> <idArg column="id" javaType="int"/> </constructor> -->
+		<id property="id" column="id" />
 		<result property="employeeId" column="employee_id" />
 		<result property="applied_on" column="applied_on" />
 		<result property="started_on" column="started_on" />
@@ -15,14 +15,8 @@
 		<result property="leaveAddress" column="leave_address" />
 		<result property="isApproved" column="is_approved" />
 		<result property="approvedById" column="supervisor_id" />
-		<association property="approvedBy" javaType="Supervisor">
-			<id property="id" column="id" />
-			<result property="fullNames" column="full_name" />
-			<result property="staffIdNo" column="staff_id" />
-			<result property="phoneNumber" column="phone_number" />
-			<result property="email" column="email" />
-			<result property="isSupervisor" column="is_supervisor" />
-		</association>
+		<result property="status" column="status" />
+
 		<association property="employee" javaType="LeaveRecord">
 			<id property="id" column="id" />
 			<result property="daysCarriedForward"
@@ -33,9 +27,9 @@
 			<result property="remainingLeaveDays"
 				column="remaining_leave_days" />
 			<result property="employeeId" column="staff_id" />
+			<result property="email" column="employee_name" />
 		</association>
 	</resultMap>
-
 	<insert id="createActiveLeave" parameterType="Employee"
 		keyProperty="id">
 		INSERT INTO ActiveLeave (employee_id, applied_on,
@@ -44,19 +38,129 @@
 		days_applied, type_of_leave, comment,
 		leave_address,
 		is_approved,
-		supervisor_id) VALUES(#{employeeId},
+		supervisor_id,
+		status) VALUES(#{employeeId},
 		#{applied_on},
 		#{started_on},
-		#{ending_on}, #{numberOfDaysApplied}, #{typeOfLeave},
+		#{ending_on},
+		#{numberOfDaysApplied},
+		#{typeOfLeave},
 		#{comment}, #{leaveAddress},
-		#{isApproved}, #{approvedById})
+		#{isApproved},
+		#{approvedById},
+		#{status})
 	</insert>
 	<select id="getAllActiveLeaves" parameterType="int"
-		resultMap="activeLeaveResultMap">
-		SELECT * FROM ActiveLeave;
+		resultMap="leaveResultMap">
+		SELECT
+		A.id,
+		A.employee_id,
+		A.applied_on,
+		A.started_on,
+		A.ended_on,
+		A.days_applied,
+		A.type_of_leave,
+		A.comment,
+		A.leave_address,
+		A.is_approved,
+		A.supervisor_id,
+		A.status,
+		L.days_carried_forward,
+		L.current_year_leave_days,
+		L.total_leave_days,
+		L.remaining_leave_days,
+		L.employee_name
+		FROM
+		activeleave AS A
+		LEFT OUTER JOIN
+		leaverecord AS L
+		ON
+		A.employee_id =
+		L.staff_id;
 	</select>
+
+	<select id="getAllActiveLeavesByStaffId" parameterType="int"
+		resultMap="leaveResultMap">
+		SELECT
+		A.id,
+		A.employee_id,
+		A.applied_on,
+		A.started_on,
+		A.ended_on,
+		A.days_applied,
+		A.type_of_leave,
+		A.comment,
+		A.leave_address,
+		A.is_approved,
+		A.supervisor_id,
+		A.status,
+		L.employee_name,
+		L.days_carried_forward,
+		L.current_year_leave_days,
+		L.total_leave_days,
+		L.remaining_leave_days
+		FROM
+		activeleave AS A
+		LEFT OUTER JOIN
+		leaverecord
+		AS L
+		ON
+		A.employee_id =
+		L.staff_id
+		WHERE A.supervisor_id = #{id};
+	</select>
+	
 	<select id="getAllActiveLeavesByEmployeeId" parameterType="int"
-		resultMap="activeLeaveResultMap">
-		SELECT * FROM ActiveLeave WHERE employee_id = #{employeeId};
+		resultMap="leaveResultMap">
+		SELECT
+		A.id,
+		A.employee_id,
+		A.applied_on,
+		A.started_on,
+		A.ended_on,
+		A.days_applied,
+		A.type_of_leave,
+		A.comment,
+		A.leave_address,
+		A.is_approved,
+		A.supervisor_id,
+		A.status,
+		L.employee_name,
+		L.days_carried_forward,
+		L.current_year_leave_days,
+		L.total_leave_days,
+		L.remaining_leave_days
+		FROM
+		activeleave AS A
+		LEFT OUTER JOIN
+		leaverecord
+		AS L
+		ON
+		A.employee_id =
+		L.staff_id
+		WHERE A.employee_id = #{id};
 	</select>
+	<select id="getActiveLeaveById" parameterType="int"
+		resultMap="leaveResultMap">
+		SELECT * FROM activeleave WHERE id = #{id};
+	</select>
+	<update id="updateLeaveRequest">
+		UPDATE activeleave
+		SET
+		employee_id=#{employeeId},
+		applied_on=#{applied_on},
+		started_on=#{started_on} ,
+		ended_on=#{ending_on},
+		days_applied=#{numberOfDaysApplied},
+		type_of_leave=#{typeOfLeave},
+		comment=#{comment},
+		leave_address=#{leaveAddress},
+		is_approved=#{isApproved},
+		supervisor_id=#{approvedById},
+		status=#{status}
+		WHERE id=#{id};
+	</update>
+	<delete id="deleteActiveLeaveById" parameterType="int">
+		DELETE FROM activeleave WHERE id =#{id};
+	</delete>
 </mapper>

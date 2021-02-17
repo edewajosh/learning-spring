@@ -26,8 +26,18 @@ public class LeaveRecordImplDao implements ILeaveRecord {
 		return status;
 	}
 
-	public LeaveRecord getLeaveRecordById(LeaveRecord LeaveRecord) {
-		return null;
+	public LeaveRecord getLeaveRecordById(Integer id) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		LeaveRecord leaveRecord = null;
+		
+		try {
+			leaveRecord = session.selectOne("LeaveRecord.getLeaveRecordById", id);
+			session.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return leaveRecord;
 	}
 
 	public List<LeaveRecord> getAllLeaveRecords() {
@@ -44,8 +54,18 @@ public class LeaveRecordImplDao implements ILeaveRecord {
 		return leaveRecords;
 	}
 
-	public boolean updateLeaveRecord(LeaveRecord LeaveRecord) {
-		return false;
+	public boolean updateLeaveRecord(LeaveRecord leaveRecord) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		boolean status = false;
+		try {
+			session.insert("LeaveRecord.updateLeaveRecord", leaveRecord);
+			session.commit();
+			status = true;
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 	public boolean deleteLeaveRecordById(int id) {
@@ -54,6 +74,20 @@ public class LeaveRecordImplDao implements ILeaveRecord {
 
 	public boolean deleteAllLeaveRecords() {
 		return false;
+	}
+
+	public LeaveRecord getLeaveRecordByEmployeeId(int employeeId) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		LeaveRecord leaveRecord = null;
+		
+		try {
+			leaveRecord = session.selectOne("LeaveRecord.getLeaveRecordByEmployeeId", employeeId);
+			session.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return leaveRecord;
 	}
 
 }

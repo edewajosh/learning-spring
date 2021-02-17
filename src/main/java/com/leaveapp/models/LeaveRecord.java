@@ -12,23 +12,30 @@ public class LeaveRecord {
 	private Integer totalLeaveDays;
 	private Integer remainingLeaveDays;
 	private Integer employeeId;
+	private String email;
+	private Employee employee;
 	
-	public LeaveRecord(Integer id, Integer daysCarriedForward, Integer totalLeaveDays,Integer currentYearLeaveDays , Integer remainingLeaveDays, Integer employeeId) {
+	public LeaveRecord() {}
+	
+	public LeaveRecord(Integer id, Integer daysCarriedForward, Integer totalLeaveDays,Integer currentYearLeaveDays , Integer remainingLeaveDays, Integer employeeId, String email) {
 		this.id = id;
 		this.daysCarriedForward = daysCarriedForward;
 		this.totalLeaveDays = totalLeaveDays;
 		this.employeeId = employeeId;
 		this.currentYearLeaveDays = currentYearLeaveDays;
 		this.remainingLeaveDays = remainingLeaveDays;
+		this.email = email;
 	}
 
-	public LeaveRecord(Integer daysCarriedForward,  Integer totalLeaveDays,Integer currentYearLeaveDays, Integer remainingLeaveDays, Integer employeeId) {
+	public LeaveRecord(Integer daysCarriedForward,  Integer totalLeaveDays,Integer currentYearLeaveDays, Integer remainingLeaveDays, Integer employeeId, String email) {
 		this.daysCarriedForward = daysCarriedForward;
 		this.totalLeaveDays = totalLeaveDays;
 		this.employeeId = employeeId;
 		this.currentYearLeaveDays = currentYearLeaveDays;
 		this.remainingLeaveDays = remainingLeaveDays;
+		this.email = email;
 	}
+	
 
 	public Integer getId() {
 		return id;
@@ -76,4 +83,17 @@ public class LeaveRecord {
 	public void setRemainingLeaveDays(int remainingLeaveDays) {
 		this.remainingLeaveDays = remainingLeaveDays;
 	}
+	
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }

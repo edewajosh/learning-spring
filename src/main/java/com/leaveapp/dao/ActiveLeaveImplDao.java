@@ -25,8 +25,17 @@ public class ActiveLeaveImplDao implements IActiveLeave {
 		return status;
 	}
 
-	public ActiveLeave getActiveLeaveById(Integer id) {
-		return null;
+	public List<ActiveLeave> getActiveLeaveBySupervisorId(Integer supervisor_id) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		List<ActiveLeave> leaves = null;
+		try {
+			leaves = session.selectList("ActiveLeave.getAllActiveLeavesByStaffId", supervisor_id);
+			session.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return leaves;
 	}
 
 	public List<ActiveLeave> getAllActiveLeaves() {
@@ -43,15 +52,61 @@ public class ActiveLeaveImplDao implements IActiveLeave {
 	}
 
 	public boolean updateActiveLeave(ActiveLeave ActiveLeave) {
-		return false;
+		boolean status = false;
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		try {
+			session.update("ActiveLeave.updateLeaveRequest", ActiveLeave);
+			session.commit();
+			status=true;
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 	public boolean deleteActiveLeaveById(int id) {
-		return false;
+		boolean status = false;
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		try {
+			session.delete("ActiveLeave.deleteActiveLeaveById", id);
+			session.commit();
+			status=true;
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 	public boolean deleteAllActiveLeaves() {
 		return false;
+	}
+
+	public ActiveLeave getLeaveById(Integer id) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		ActiveLeave leave = null;
+		try {
+			leave = session.selectOne("ActiveLeave.getActiveLeaveById", id);
+			session.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return leave;
+	}
+
+	public List<ActiveLeave> getActiveLeaveByEmployeeId(Integer employeeId) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		List<ActiveLeave> leaves = null;
+		try {
+			leaves = session.selectList("ActiveLeave.getAllActiveLeavesByEmployeeId", employeeId);
+			session.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return leaves;
 	}
 
 }

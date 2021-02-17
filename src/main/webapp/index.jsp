@@ -39,6 +39,7 @@
 				<li class="nav-item"><a class="nav-link" href="leave">Employee</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="login-supervisor">Supervisor</a></li>
+				<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
 			</ul>
 		</div>
 	</nav>

@@ -26,4 +26,8 @@
 	<select id="getAllSupervisors" resultMap="supervisorResultMap">
 		SELECT * FROM supervisor;
 	</select>
+	
+	<select id="getAllSupervisorByEmail" resultMap="supervisorResultMap">
+		SELECT * FROM supervisor  WHERE email=#{email};
+	</select>
 </mapper>

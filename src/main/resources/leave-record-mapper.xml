@@ -11,6 +11,12 @@
 		<result property="remainingLeaveDays"
 			column="remaining_leave_days" />
 		<result property="employeeId" column="staff_id" />
+		<result property="email" column="employee_name" />
+
+		<!-- <association property="employee" javaType="Employee"> <id property="id" 
+			column="id" /> <result property="fullNames" column="full_name" /> <result 
+			property="staffIdNo" column="staff_id" /> <result property="phoneNumber" 
+			column="phone_number" /> <result property="email" column="email"/> </association> -->
 	</resultMap>
 
 	<insert id="createLeaveRecord" parameterType="LeaveRecord"
@@ -18,11 +24,27 @@
 		INSERT INTO LeaveRecord(days_carried_forward,
 		current_year_leave_days,
 		total_leave_days,remaining_leave_days,
-		staff_id)
-		VALUES(#{daysCarriedForward}, #{currentYearLeaveDays},
-		#{totalLeaveDays}, #{remainingLeaveDays}, #{employeeId});
+		staff_id, employee_name)
+		VALUES(#{daysCarriedForward},
+		#{currentYearLeaveDays},
+		#{totalLeaveDays}, #{remainingLeaveDays},
+		#{employeeId}, #{email});
 	</insert>
-	<select id="getAllLeaveRecords" parameterType="int" resultMap="leaveRecordResultMap">
+	<select id="getAllLeaveRecords" parameterType="int"
+		resultMap="leaveRecordResultMap">
 		SELECT * FROM LeaveRecord;
 	</select>
+	<select id="getLeaveRecordByEmployeeId" parameterType="employee"
+		resultMap="leaveRecordResultMap">
+		SELECT * FROM LeaveRecord WHERE staff_id=#{employeeId};
+	</select>
+
+	<update id="updateLeaveRecord" parameterType="LeaveRecord">
+		UPDATE leaverecord
+		SET days_carried_forward=#{daysCarriedForward},
+		current_year_leave_days=#{currentYearLeaveDays},
+		total_leave_days=#{totalLeaveDays},
+		remaining_leave_days=#{remainingLeaveDays}, staff_id=#{employeeId},
+		employee_name=#{email}  WHERE id = #{id};
+	</update>
 </mapper>

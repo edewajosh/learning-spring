@@ -32,10 +32,10 @@ public class EmployeeController {
 		String staffId = request.getParameter("staff_id");
 		String fullName = request.getParameter("full_name");
 		String phoneNumber = request.getParameter("phone_number");
-		System.out.println(staffId + " " + fullName + " " + phoneNumber);
+		String email = request.getParameter("email");
 		List<Employee> employees = null;
 		boolean status = false;
-		status = employeeDao.createEmployee(new Employee(fullName, staffId, phoneNumber));
+		status = employeeDao.createEmployee(new Employee(fullName, staffId, phoneNumber, email));
 		if(status == true) {
 			employees = employeeDao.getAllEmployees();
 			modelAndView.setViewName("dashboard.jsp");

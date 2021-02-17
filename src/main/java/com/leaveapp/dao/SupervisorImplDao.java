@@ -44,4 +44,17 @@ public class SupervisorImplDao implements ISupervisor {
 		return false;
 	}
 
+	public Supervisor getSupervisorByEmail(String email) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		Supervisor supervisor = null;
+		try {
+			supervisor = session.selectOne("Supervisor.getAllSupervisorByEmail", email);
+			session.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return supervisor;
+	}
+
 }

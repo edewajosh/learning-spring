@@ -10,18 +10,23 @@ public class Employee {
 	private String fullNames;
 	private String staffIdNo;
 	private String phoneNumber;
+	private String email;
 	
-	public Employee(Integer id, String fullNames, String staffIdNo, String phoneNumber) {
+	public Employee() {}
+	
+	public Employee(Integer id, String fullNames, String staffIdNo, String phoneNumber, String email) {
 		this.id = id;
 		this.fullNames = fullNames;
 		this.staffIdNo = staffIdNo;
 		this.phoneNumber = phoneNumber;
+		this.email = email;
 	}
 
-	public Employee(String fullNames, String staffIdNo, String phoneNumber) {
+	public Employee(String fullNames, String staffIdNo, String phoneNumber, String email) {
 		this.fullNames = fullNames;
 		this.staffIdNo = staffIdNo;
 		this.phoneNumber = phoneNumber;
+		this.email = email;
 	}
 
 	public Integer getId() {
@@ -54,6 +59,14 @@ public class Employee {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
