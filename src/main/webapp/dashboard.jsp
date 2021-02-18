@@ -28,8 +28,9 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="container mt-1 text-center ">
-		<p class="h4">Admin-Dashboard</p>
+	<div class="container mt-1 row ">
+		<div class="col-6"><p class="h4">Admin-Dashboard</p></div>
+		<div class="col-6"><a href="<c:url value="/generate-leave-pdf/pdf"/>">Report</a></div>
 	</div>
 	<div class="row container-fluid mt-2">
 		<div class="col-2">
