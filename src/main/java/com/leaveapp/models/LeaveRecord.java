@@ -68,11 +68,11 @@ public class LeaveRecord {
 		this.totalLeaveDays = totalLeaveDays;
 	}
 
-	public Integer getEmployee() {
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployee(Integer employeeId) {
+	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
 	
@@ -84,6 +84,9 @@ public class LeaveRecord {
 		this.remainingLeaveDays = remainingLeaveDays;
 	}
 	
+	public Employee getEmployee() {
+		return employee;
+	}
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}

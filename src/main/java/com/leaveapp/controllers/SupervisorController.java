@@ -87,7 +87,6 @@ public class SupervisorController {
 			appliedLeaveDays = leave.getNumberOfDaysApplied();
 			remainingLeaveDays = currentLeaveDays - appliedLeaveDays;
 			leaveRecord.setRemainingLeaveDays(remainingLeaveDays);
-			System.out.println("Remaining: " + remainingLeaveDays);
 		}
 		
 		leave.setApproved(isApproved);
