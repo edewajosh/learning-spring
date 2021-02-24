@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @Configuration
-@ComponentScan({"com.leaveapp.dao", "com.leaveapp.controllers"})
+@ComponentScan({"com.leaveapp.dao", "com.leaveapp.controllers", "com.leaveapp.restcontrollers"})
 public class DispatcherConfig extends WebMvcConfigurationSupport {
 	
 }

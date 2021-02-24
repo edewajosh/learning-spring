@@ -11,12 +11,31 @@ import com.leaveapp.utils.LeaveUtils;
 @Component
 public class SupervisorImplDao implements ISupervisor {
 
-	public boolean createSupervisor(Supervisor Supervisor) {
-		return false;
+	public boolean createSupervisor(Supervisor supervisor) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		boolean status = false;
+		try {
+			session.insert("Supervisor.createSupervisor", supervisor);
+			session.commit();
+			status = true;
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 	public Supervisor getSupervisorById(Integer id) {
-		return null;
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		Supervisor supervisor = null;
+		try {
+			supervisor = session.selectOne("Supervisor.getSupervisorById", id);
+			session.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return supervisor;
 	}
 
 	public List<Supervisor> getAllSupervisors() {
@@ -32,16 +51,46 @@ public class SupervisorImplDao implements ISupervisor {
 		return supervisors;
 	}
 
-	public boolean updateSupervisor(Supervisor Supervisor) {
-		return false;
+	public boolean updateSupervisor(Supervisor supervisor) {
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		boolean status = false;
+		try {
+			session.update("Supervisor.updateSupervisor", supervisor);
+			session.commit();
+			status = true;
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 	public boolean deleteSupervisorById(int id) {
-		return false;
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		boolean status = false;
+		try {
+			session.delete("Supervisor.deleteSupervisorById", id);
+			session.commit();
+			status = true;
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 	public boolean deleteAllSupervisors() {
-		return false;
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		boolean status = false;
+		try {
+			session.delete("Supervisor.deleteAllSupervisors");
+			session.commit();
+			status = true;
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 	public Supervisor getSupervisorByEmail(String email) {

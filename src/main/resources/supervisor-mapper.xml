@@ -11,23 +11,40 @@
 		<result property="isSupervisor" column="is_supervisor" />
 	</resultMap>
 
-	<insert id="createSupervisor" parameterType="Supervisor" keyProperty="id">
+	<insert id="createSupervisor" parameterType="Supervisor"
+		keyProperty="id">
 		INSERT INTO
-		supervisor(full_name, staff_id, phone_number, email,
+		supervisor(full_name, staff_id, phone_number,
+		email,
 		is_supervisor)
-		VALUES(#{fulNames}, #{staffIdNo}, #{phoneNumber},
+		VALUES(#{fullNames}, #{staffIdNo}, #{phoneNumber},
 		#{email},
 		#{isSupervisor});
 	</insert>
 
-	<select id="getSupervisorById" parameterType="int">
-		SELECT * FROM supervisor WHERE id=#{id};
+	<select id="getSupervisorById" parameterType="int"
+		resultMap="supervisorResultMap">
+		SELECT * FROM
+		supervisor WHERE id=#{id};
 	</select>
 	<select id="getAllSupervisors" resultMap="supervisorResultMap">
-		SELECT * FROM supervisor;
+		SELECT * FROM
+		supervisor;
 	</select>
-	
-	<select id="getAllSupervisorByEmail" resultMap="supervisorResultMap">
-		SELECT * FROM supervisor  WHERE email=#{email};
+
+	<select id="getAllSupervisorByEmail"
+		resultMap="supervisorResultMap">
+		SELECT * FROM supervisor WHERE email=#{email};
 	</select>
+	<update id="updateSupervisor" parameterType="Supervisor">
+		UPDATE supervisor
+		SET full_name=#{fullNames}, staff_id=#{staffIdNo},
+		phone_number=#{phoneNumber}, email=#{email},
+		is_supervisor=#{isSupervisor}, password=#{password}
+		WHERE id=#{id};
+	</update>
+	<delete id="deleteSupervisorById" parameterType="int">
+		DELETE FROM
+		supervisor WHERE id=#{id};
+	</delete>
 </mapper>
