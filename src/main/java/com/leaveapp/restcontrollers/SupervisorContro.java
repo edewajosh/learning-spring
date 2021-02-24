@@ -18,14 +18,14 @@ import com.leaveapp.dao.SupervisorImplDao;
 import com.leaveapp.models.Supervisor;
 
 @RestController
-@RequestMapping("/apiv1")
+@RequestMapping("/apiv1/supervisors")
 public class SupervisorContro {
 	
 	@Autowired
 	private SupervisorImplDao supervisorImplDao;
 	
 	// GET: fetch all supervisors
-	@GetMapping("/supervisors")
+	@GetMapping("")
 	public ResponseEntity<List<Supervisor>> getSupervisors(){
 		List<Supervisor> supervisors = null;
 		supervisors = supervisorImplDao.getAllSupervisors();
@@ -33,7 +33,7 @@ public class SupervisorContro {
 	}
 	
 	// GET: fetch a single supervisor
-	@GetMapping("/supervisors/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Supervisor> getSupervisor(@PathVariable("id") int id){
 		Supervisor supervisor = null;
 		supervisor = supervisorImplDao.getSupervisorById(id);
@@ -43,7 +43,7 @@ public class SupervisorContro {
 		return new ResponseEntity<Supervisor>(supervisor, HttpStatus.OK);
 	}
 	
-	@PostMapping("/supervisors")
+	@PostMapping("")
 	public ResponseEntity<Supervisor> createSupervisor(@RequestBody Supervisor supervisor){
 		boolean status = false;
 		status = supervisorImplDao.createSupervisor(supervisor);
@@ -53,7 +53,7 @@ public class SupervisorContro {
 		return new ResponseEntity<Supervisor>(supervisor, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("/supervisors/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity deleteSupervisor(@PathVariable("id") int id){
 		boolean status = false;
 		status = supervisorImplDao.deleteSupervisorById(id);
@@ -63,7 +63,7 @@ public class SupervisorContro {
 		return new ResponseEntity("Supervisor deleted successfully", HttpStatus.OK);
 	}
 	
-	@PutMapping("/supervisors/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Supervisor> updateSupervisor(@PathVariable("id") int id, @RequestBody Supervisor supervisor){
 		boolean status = false;
 		status = supervisorImplDao.updateSupervisor(supervisor);

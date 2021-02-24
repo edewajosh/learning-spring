@@ -52,15 +52,47 @@ public class EmployeeImplDao implements IEmployee {
 	}
 
 	public boolean updateEmployee(Employee employee) {
-		return false;
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		boolean status = false;
+		try {
+			session.update("Employee.updateEmployee", employee);
+			session.commit();
+			status= true;
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return status;
 	}
 
 	public boolean deleteEmployeeById(int id) {
-		return false;
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		boolean status = false;
+		try {
+			session.delete("Employee.deleteEmployeeById", id);
+			session.commit();
+			status= true;
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return status;
 	}
 
 	public boolean deleteAllEmployees() {
-		return false;
+		SqlSession session = LeaveUtils.getSqlSessionFactory().openSession();
+		boolean status = false;
+		try {
+			session.delete("Employee.deleteAllEmployees");
+			session.commit();
+			status= true;
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 }
