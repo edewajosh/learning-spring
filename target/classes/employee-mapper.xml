@@ -7,25 +7,30 @@
 		<result property="fullNames" column="full_name" />
 		<result property="staffIdNo" column="staff_id" />
 		<result property="phoneNumber" column="phone_number" />
-		<result property="email" column="email"/>
+		<result property="email" column="email" />
 	</resultMap>
 
-	<insert id="createEmployee" parameterType="Employee" keyProperty="id">
+	<insert id="createEmployee" parameterType="Employee"
+		keyProperty="id">
 		INSERT INTO
-		employee(full_name, staff_id, phone_number, email) VALUES(#{fullNames},
+		employee(full_name, staff_id, phone_number,
+		email) VALUES(#{fullNames},
 		#{staffIdNo}, #{phoneNumber}, #{email});
 	</insert>
-	<select id="getAllEmployees" parameterType="int" resultMap="employeeResult">
+	<select id="getAllEmployees" parameterType="int"
+		resultMap="employeeResult">
 		SELECT * FROM
 		employee;
 	</select>
-	<select id="getEmployeeById" parameterType="int" resultMap="employeeResult">
+	<select id="getEmployeeById" parameterType="int"
+		resultMap="employeeResult">
 		SELECT * FROM
 		employee WHERE id=#{id};
 	</select>
-	<update id="updateEmployee" parameterType="int">
-		UPDATE employee SET(full_name=#{fullNames}, staff_id=#{staffIdNo},
-		phone_number=#{phoneNumber}, email=#{email});
+	<update id="updateEmployee" parameterType="Employee">
+		UPDATE employee SET
+		full_name=#{fullNames}, staff_id=#{staffIdNo},
+		phone_number=#{phoneNumber}, email=#{email};
 	</update>
 	<delete id="deleteByAddressId" parameterType="int">
 		DELETE FROM

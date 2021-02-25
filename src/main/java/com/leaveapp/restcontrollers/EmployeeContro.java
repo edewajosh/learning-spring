@@ -17,7 +17,7 @@ import com.leaveapp.dao.EmployeeImplDao;
 import com.leaveapp.models.Employee;
 
 @RestController
-@RequestMapping("/apiv1/employees")
+@RequestMapping("/apiv1/employees/")
 public class EmployeeContro {
 	
 	@Autowired
@@ -35,7 +35,7 @@ public class EmployeeContro {
 	}
 	
 	// GET: Returns a response with an employee
-	@GetMapping("/{id}")
+	@GetMapping("{id}")
 	public ResponseEntity<Employee> getEmployee(@PathVariable("id") int id){
 		Employee employee = null;
 		employee = employeeImplDao.getEmployeeById(id);
@@ -57,12 +57,12 @@ public class EmployeeContro {
 	}
 	
 	// PUT: Updates an employee and returns employee response
-	@PutMapping("/{id}")
+	@PutMapping("{id}")
 	public ResponseEntity<Employee> updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee){
 		boolean status = false;
 		status = employeeImplDao.updateEmployee(employee);
 		if(status == false) {
-			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("Employee could not be updated", HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Employee>(employee, HttpStatus.OK);
 	}
